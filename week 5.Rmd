@@ -1,0 +1,39 @@
+---
+title: "Week 5"
+author: "Emmanuel Assenso Antwi"
+date: '2022'
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+The data measured alcohol consumption in different countries around the world. The product used for the studies was beer, spirits and wine. 
+
+
+
+
+```{r get data, include = TRUE}
+library(ggplot2)
+url <- "https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv"
+Alcohol <- read.csv(url)
+HighAlcohol <- subset(Alcohol,total_litres_of_pure_alcohol>11.5)
+
+```
+
+```{r clean data, include = TRUE}
+ggplot(data = HighAlcohol) +
+  geom_point(mapping = aes(x = country, y= wine_servings))
+#The graph  shows the wine consumption among the highest 6 consumers of alcohol
+```
+ 
+
+
+
+
+```{r, echo = TRUE}
+ggplot(data = HighAlcohol) +
+  geom_bar(mapping = aes(x = country, y = beer_servings), stat = "identity",fill="tan1", colour="sienna3")
+
+#The graph  shows the wine consumption among the highest 6 consumers of alcohol
+```
